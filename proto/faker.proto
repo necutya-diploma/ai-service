@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "./gen/go/";
+
+package faker;
+
+service AI{
+  rpc CheckMessage(Message) returns (MessageResponse) {}
+}
+
+message Message{
+  string message = 1;
+}
+
+message MessageResponse{
+  string message = 1;
+  bool isGenerated = 2;
+  float generatedPercent = 3;
+}
