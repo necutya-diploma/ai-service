@@ -1,16 +1,14 @@
 import gen.py.faker_pb2 as pb
 import gen.py.faker_pb2_grpc as pb_grpc
 
-from service.ai import Faker
-
 
 class AIGrpcService(pb_grpc.AIServicer):
 
-    def __init__(self, *args, **kwargs):
-        pass
+    def __init__(self, ai_service, *args, **kwargs):
+        self.ai_service = ai_service
 
     def CheckMessage(self, request, context):
-        res = Faker().check(request.message)
+        res = self.ai_service.check_message(request.message)
         return self._generate_check_message_response(*res)
 
     @staticmethod

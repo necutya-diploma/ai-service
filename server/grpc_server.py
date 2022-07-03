@@ -8,11 +8,11 @@ from service.grpc import AIGrpcService
 
 
 class GrpcServer:
-    def __init__(self, port: str, workers_count: int, ai_service: Type[AIGrpcService], *args, **kwargs):
+    def __init__(self, port: str, workers_count: int, ai_service: AIGrpcService, *args, **kwargs):
         self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=workers_count))
         self.server.add_insecure_port(port)
 
-        pb_grpc.add_AIServicer_to_server(ai_service(), self.server)
+        pb_grpc.add_AIServicer_to_server(ai_service, self.server)
 
         self.port = port
 

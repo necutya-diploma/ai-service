@@ -2,5 +2,9 @@
   "grpc": {
     "port": "[::]:8082",
     "workers_count": 10
+  },
+  "ai": {
+    "model_path": "./ai/model/bi_lstm_model",
+    "tokenizer_path": "./ai/model/tokenizer.pkl"
   }
 }
